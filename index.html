@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رحلة في عالم الأسس - G1-17</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        overflow: hidden;
+        background: #0f172a;
+        color: #f8fafc;
+        margin: 0;
+      }
+      .sky {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 120%, #1e40af 0%, #0f172a 70%);
+      }
+      .cloud {
+        position: absolute;
+        background: white;
+        border-radius: 100px;
+        opacity: 0.1;
+        filter: blur(25px);
+        animation: moveClouds linear infinite;
+      }
+      @keyframes moveClouds {
+        from { transform: translateX(110vw); }
+        to { transform: translateX(-50vw); }
+      }
+      #error-display {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        background: #ef4444;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        z-index: 9999;
+        text-align: center;
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <div id="error-display">نعتذر، هناك مشكلة في تحميل الملفات البرمجية. يرجى التأكد من رفع جميع الملفات بشكل صحيح.</div>
+    <div class="sky">
+      <div class="cloud w-[400px] h-[100px] top-10" style="animation-duration: 45s;"></div>
+      <div class="cloud w-[600px] h-[150px] top-1/3" style="animation-duration: 80s;"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      // كاشف أخطاء بسيط للتنبيه في حال فشل التحميل
+      window.onerror = function(msg) {
+        if(msg.includes('import')) {
+          document.getElementById('error-display').style.display = 'block';
+        }
+      };
+    </script>
+  </body>
+</html>
